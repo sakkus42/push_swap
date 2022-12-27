@@ -1,0 +1,90 @@
+#push swap language araştır
+#stack araştır
+    ilk giren en son çıkar. En son giren ilk çıkar LIFO
+#sorting algorithm araştır
+    type Of sorting
+        1.Internal Sorting(dahili sıralama)
+        {
+            tüm verileri ana belleğe yada dahili belleğe yerleştrilidiğinde internal sorting olut.
+            boyutunun ötesinde girdi alamaz.
+            Example: heap sort, bubble sort, selection sort, quick sort, shell sort, insertion sort.
+        }
+        2.External Sorting(Dış/harici sıralama)
+        {
+            tüm veriler hafızaya yerleştirilmediğinde External sorting.
+            Harici sıralama büyük miktarda veri için kullanılır.
+            Merge sort varyasyonları external sorting için kullanılır.
+            Some external storage like hard disks and CDs are used for external sorting.
+            Example: Merge sort, Tag sort, Polyphase sort, Four tape sort, External radix sort, Internal merge sort, etc.
+        }
+    What is stable sorting?
+        Sıralanmış verilerde konumları değişmeden iki aynı verinin aynı sırada görünmesine kararlı sıralama denir.
+        Example: merge sort, insertion sort, bubble sort.
+    What is Unstable sorting?
+        Sıralanan verilerde aynı iki verinin farklı sırada görünmesine kararsız sıralama denir.
+        Example: quick sort, heap sort, shell sort.
+    Algoritma Verimliliği
+        1.Time Complexity(Zaman Karmaşıklığı)
+            Zaman Karmaşıklığı, toplam süre yerine belirli bir komut setinin yürütülme sayısı olarak tanımlanır.
+            Bunun nedeni, toplam sürenin kullanılan derleyici, işlemci hızı vb. gibi bazı dış etkenlere de bağlı olmasıdır.
+        2.Space Complexity
+            Progmaın ihitiycaı olan toplam bellek alanı.
+
+Algoritmanın ne kadar hızlı büyüdüğünü ölçmen önemli.
+İç içe döngü sıkıntılı yapma iki döngü O(n^2) tek döngü O(n).
+    
+    
+#concept complexity araştır
+#verimli sıralama araştır
+
+Mandatory Part
+    2 stack a and b;
+    a stacki rastgele sayılar içerir;
+    The stack b is empty;
+    Sayılar artan düzende a stackine sıralanmaktadır
+    {
+        sa (swap a): a stackinin en üstündeki 2 öğeyi değiştir.
+            Do nothing if there is only one or no elements.
+        sb (swap b): b stackinin en üstündeki 2 çğeyi değiştir.
+            Do nothing if there is only one or no elements.
+        ss : sa and sb at the same time.
+
+        pa (push a): b nin tepesindekini a nın tepesine koy.
+            Do nothing if b is empty.
+        pb (push b): Take the first element at the top of a and put it at the top of b.
+            Do nothing if a is empty.
+            
+        ra (rotate a): a yığının tüm elemanlarını bir yukarı taşı
+            İlk eleman son eleman olur.
+        rb (rotate b): : Shift up all elements of stack b by 1.
+            The first element becomes the last one.
+        rr: ra and rb at the same time.
+
+        rra (reverse rotate a): : Shift down all elements of stack a by 1.
+            The last element becomes the first one.
+        rrb (reverse rotate b): Shift down all elements of stack b by 1.
+            The last element becomes the first one.
+        rrr : rra and rrb at the same time.
+    }   
+
+The "push_swap" program
+{
+    relink control; ok
+    iki yığın oluşturulacak ilk argumanımız en üste olması gerekiyor;
+    a yığının en küçük sayısı en üsttedir;
+    talimatlar '\n' ile ayrılmalıdır;
+    amaç satcki en düşük işlem sayısıyla sırlamak;
+    Testerda Programınız daha uzun bir liste gösteriyorsa veya sayılar düzgün sıralanmamışsa,
+        derece 0 olacaktır;
+    parametre yoksa hiç bir şey yapma;
+    hata durumu gösterilmesi lazım;
+    hata durumları
+    {
+        tam sayı olup olmama durumu;
+        tüm sayıların farklı olması lazım aynı sayı olduğu zaman hata;
+        int max dan büyük yada int minden küçükse hata;
+        sadece sayısal değerler olması lazım
+    }
+    Checker_OS programı "KO" gösteriyorsa, bu, push_swap'inizin sayıları 
+        sıralamayan bir talimat listesi ile geldiği anlamına gelir;
+}
