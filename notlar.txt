@@ -80,10 +80,10 @@ The "push_swap" program
     hata durumu gösterilmesi lazım;
     hata durumları
     {
-        tam sayı olup olmama durumu;
-        tüm sayıların farklı olması lazım aynı sayı olduğu zaman hata;
-        int max dan büyük yada int minden küçükse hata;
-        sadece sayısal değerler olması lazım
+        tam sayı olup olmama durumu; ok
+        tüm sayıların farklı olması lazım aynı sayı olduğu zaman hata; ok
+        int max dan büyük yada int minden küçükse hata; ok
+        sadece sayısal değerler olması lazım ok
     }
     Checker_OS programı "KO" gösteriyorsa, bu, push_swap'inizin sayıları 
         sıralamayan bir talimat listesi ile geldiği anlamına gelir;
