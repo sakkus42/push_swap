@@ -1,94 +1,105 @@
 #include "push_swap.h"
-#include <stdio.h>
 
-int	is_same_nbr(long int *nbrs, int len)
+long int	ft_atoi(const char *str)
 {
-	int	i;
-	int	k;
+	int			i;
+	int			sign;
+	long int	number;
 
+	sign = 1;
+	number = 0;
 	i = 0;
-	while (i < len)
+	if (str[i] == '-' || str[i] == '+')
 	{
-		k = i;
-		while(k++ < len)
-		{
-			if (nbrs[i] == nbrs[k])
-				return (1);
-		}
+		if (str[i] == '-')
+			sign = -1;
 		i++;
 	}
-	free(nbrs);
+	while (str[i] <= '9' && str[i] >= '0')
+	{
+		number = (number * 10) + (str[i] - 48) * sign;
+		i++;
+	}
+	return (number);
+}
+
+int	stack_init(s_list *s_stack, int a_len, char **arv)
+{ 
+	int			i;
+	int			k;
+	int			j;
+	long int	dig;
+	
+	s_stack->a_len = a_len;
+	s_stack->stack_a = malloc(sizeof(int) * a_len);
+	if (!(s_stack->stack_a))
+		return (1);
+	i = 1;
+	k = 0;
+	while (arv[i])
+	{
+		j = 0;
+		dig = ft_atoi(arv[i++]);
+		if ((dig < -2147483648 || dig > 2147483647))
+			return(1);
+		while (j < k)
+		{
+			if (s_stack->stack_a[j++] == dig)
+				return (1);
+		}
+		s_stack->stack_a[k++] = (int)dig;
+	}
 	return (0);
 }
 
-int	is_dignbr(char **str)
-{
-	int i;
-	int k;
-	int is;
-
-	is = 0;
-	i = 1;
-	k = 0;
-	while (str[i] != 0)
-	{	
-		if (str[i][k] == '-' && k == 0)
-			k++;
-		if (str[i][k] == '\0')
-		{
-			k = 0;
-			i++;
-		}
-		if (str[i] && !ft_isdigit(str[i][k]))
-			is = 1;
-		k++;
-	}
-	if (is == 1)
-		ft_printf("ERROR: only integers are valid!\n");
-	return (is == 1);
-}
-
-int	is_intlimit(long int *nbrs, int len)
+int	control(char **arv)
 {
 	int	i;
-	int	is;
-
-	i = 0;
-	is = 0;
-	while (i < len)
+	int	k;
+	
+	i = 1;
+	while (arv[i])
 	{
-		if (nbrs[i] > 2147483647 || nbrs[i] < -2147483648)
+		k = 0;
+		if (arv[i][k] == '-' || arv[i][k] == '+')
+			k++;
+		while(arv[i][k])
 		{
-			ft_printf("ERROR: given values are not integer value ranges\n");
-			is = 1;
+			if (!(arv[i][k] <= '9' && arv[i][k] >= '0'))
+				return (1);
+			k++;
 		}
 		i++;
-	}
-	free(nbrs);
-	return (is == 1);
-}
-
-int	control(char **arv, int ac)
-{
-	if (ac == 1)
-	{
-		ft_printf("ERROR: missing argument!\n");
-		return (1);
-	}
-	if (is_dignbr(arv) || is_intlimit(arrays_atoi(arv + 1), arrays_len(arv + 1)))
-		return (1);
-	if (is_same_nbr(arrays_atoi(arv + 1), arrays_len(arv + 1)))
-	{
-		ft_printf("ERROR: not more than one of the same number\n");
-		return(1);
 	}
 	return (0);
 }
 
 int	main(int ac, char *arv[])
 {
-	if (control(arv, ac))
+	s_list s_stack;
+
+	if (ac < 3 || control(arv) || stack_init(&s_stack, ac - 1, arv))
+	{
+		if (s_stack.stack_a)
+			free(s_stack.stack_a);
+		system("leaks push_swap");
+		write(1, "ERROR\n", 6);
 		return (1);
+	}
+	int i = 0;
+	while(i < ac - 1)
+	{
+		printf("%d ", s_stack.stack_a[i]);
+		i++;
+	}
+	printf("\n");
+	swap_a(s_stack.stack_a);
+	i = 0;
+	while(i < ac - 1)
+	{
+		printf("%d ", s_stack.stack_a[i]);
+		i++;
+	}
+	// system("leaks push_swap");
 	return (0);
 }
-	

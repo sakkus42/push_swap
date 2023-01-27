@@ -70,7 +70,8 @@ Mandatory Part
 The "push_swap" program
 {
     relink control; ok
-    iki yığın oluşturulacak ilk argumanımız en üste olması gerekiyor;
+    iki yığın oluşturulacak 
+    ilk argumanımız en üste olması gerekiyor;
     a yığının en küçük sayısı en üsttedir;
     talimatlar '\n' ile ayrılmalıdır;
     amaç satcki en düşük işlem sayısıyla sırlamak;
@@ -80,8 +81,8 @@ The "push_swap" program
     hata durumu gösterilmesi lazım;
     hata durumları
     {
-        tam sayı olup olmama durumu; ok
-        tüm sayıların farklı olması lazım aynı sayı olduğu zaman hata; ok
+        tam sayı olup olmama durumu; ok 
+        tüm sayıların farklı olması lazım aynı sayı olduğu zaman hata; 
         int max dan büyük yada int minden küçükse hata; ok
         sadece sayısal değerler olması lazım ok
     }
