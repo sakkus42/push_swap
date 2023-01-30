@@ -1,27 +1,5 @@
 #include "push_swap.h"
 
-long int	ft_atoi(const char *str)
-{
-	int			i;
-	int			sign;
-	long int	number;
-
-	sign = 1;
-	number = 0;
-	i = 0;
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			sign = -1;
-		i++;
-	}
-	while (str[i] <= '9' && str[i] >= '0')
-	{
-		number = (number * 10) + (str[i] - 48) * sign;
-		i++;
-	}
-	return (number);
-}
 
 int	stack_init(s_list *s_stack, int a_len, char **arv)
 { 
@@ -32,7 +10,8 @@ int	stack_init(s_list *s_stack, int a_len, char **arv)
 	
 	s_stack->a_len = a_len;
 	s_stack->stack_a = malloc(sizeof(int) * a_len);
-	if (!(s_stack->stack_a))
+	s_stack->stack_b = malloc(sizeof(int) * a_len);
+	if (!(s_stack->stack_a) && !(s_stack->stack_b))
 		return (1);
 	i = 1;
 	k = 0;
@@ -93,7 +72,7 @@ int	main(int ac, char *arv[])
 		i++;
 	}
 	printf("\n");
-	swap_a(s_stack.stack_a);
+	push(s_stack->stack_b)
 	i = 0;
 	while(i < ac - 1)
 	{
