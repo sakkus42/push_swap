@@ -13,13 +13,18 @@ typedef struct stack
 	int b_len;
 }	s_list;
 
-void	swap_a(int *a);
-void	swap_b(int *a);
-void	swap_ss(int *a, int *b);
+void	sa(s_list *s_stack);
+void	sb(s_list *s_stack);
+void	ss(s_list *s_stack);
 long int	ft_atoi(const char *str);
 void	ra(s_list *t_list);
 void	rb(s_list *t_list);
 void	rr(s_list *t_list);
-void	push(int *a, int len, int add);
+void	pa(s_list *stack);
+void	pb(s_list *stack);
+void	rra(s_list *t_list);
+void	rrb(s_list *t_list);
+void	rrr(s_list *t_list);
+void	sort_small(s_list *s_stack);
 
 #endif

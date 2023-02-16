@@ -1,5 +1,24 @@
 #include "push_swap.h"
 
+int	is_sort(s_list *s_stack)
+{
+	int	i;
+	int	k;
+
+	i = 0;
+	while (i < s_stack->a_len)
+	{
+		k = i + 1;
+		while (k < s_stack->a_len)
+		{
+			if (s_stack->stack_a[i] > s_stack->stack_a[k])
+				return (0);
+			k++;
+		}
+		i++;
+	}
+	return (1);
+}
 
 int	stack_init(s_list *s_stack, int a_len, char **arv)
 { 
@@ -19,7 +38,7 @@ int	stack_init(s_list *s_stack, int a_len, char **arv)
 	{
 		j = 0;
 		dig = ft_atoi(arv[i++]);
-		if ((dig < -2147483648 || dig > 2147483647))
+		if (dig < -2147483648 || dig > 2147483647)
 			return(1);
 		while (j < k)
 		{
@@ -57,7 +76,7 @@ int	main(int ac, char *arv[])
 {
 	s_list s_stack;
 
-	if (ac < 3 || control(arv) || stack_init(&s_stack, ac - 1, arv))
+	if (ac < 3 || control(arv) || stack_init(&s_stack, ac - 1, arv) || is_sort(&s_stack))
 	{
 		if (s_stack.stack_a)
 			free(s_stack.stack_a);
@@ -71,8 +90,8 @@ int	main(int ac, char *arv[])
 		printf("%d ", s_stack.stack_a[i]);
 		i++;
 	}
+	sort_small(&s_stack);
 	printf("\n");
-	push(s_stack->stack_b)
 	i = 0;
 	while(i < ac - 1)
 	{
