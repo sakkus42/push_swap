@@ -93,9 +93,16 @@ int	main(int ac, char *arv[])
 	sort_small(&s_stack);
 	printf("\n");
 	i = 0;
-	while(i < ac - 1)
+	while(i < s_stack.a_len)
 	{
 		printf("%d ", s_stack.stack_a[i]);
+		i++;
+	}
+	printf("\n");
+	i = 0;
+	while(i < s_stack.b_len)
+	{
+		printf("%d ", s_stack.stack_b[i]);
 		i++;
 	}
 	// system("leaks push_swap");

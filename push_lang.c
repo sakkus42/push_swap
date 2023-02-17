@@ -9,22 +9,22 @@ void    swap(int *a)
 	a[1] = tmp;
 }
 
-void	sa(s_list *s_stack)
+void	sa(s_list *t_list)
 {
-	swap(s_stack->stack_a);
+	swap(t_list->stack_a);
 	write(1, "sa\n", 3);
 }
 
-void	sb(s_list *s_stack)
+void	sb(s_list *t_list)
 {
-	swap(s_stack->stack_b);
+	swap(t_list->stack_b);
 	write(1, "sb\n", 3);
 }
 
-void	ss(s_list *s_stack)
+void	ss(s_list *t_list)
 {
-	swap(s_stack->stack_a);
-	swap(s_stack->stack_b);
+	swap(t_list->stack_a);
+	swap(t_list->stack_b);
 	write(1, "ss\n", 3);
 }
 
@@ -63,7 +63,7 @@ void	rr(s_list *t_list)
 	write(1, "rr\n", 3);
 }
 
-void	push(int *a, int b, int len)
+void	push(int *a, int *b, int len, int b_len)
 {
 	int	buf[len + 1];
 	int i;
@@ -71,7 +71,7 @@ void	push(int *a, int b, int len)
 	
 	i = 0;
 	k = 1;
-	buf[0] = b;
+	buf[0] = b[0];
 	while (i < len)
 		buf[k++] = a[i++]; 
 	i = 0;
@@ -80,18 +80,24 @@ void	push(int *a, int b, int len)
 		a[i] = buf[i];
 		i++;
 	}
+	i = 0;
+	while (i < b_len)
+	{
+		b[i]  = b[i + 1];
+		i++;
+	}
 }
 
-void	pb(s_list *stack)
+void	pa(s_list *t_list)
 {
-	push(stack->stack_a, stack->stack_b[0], stack->a_len++);
-	write(1, "pb\n", 1);
+	push(t_list->stack_a, t_list->stack_b, t_list->a_len++, t_list->b_len--);
+	write(1, "pb\n", 3);
 }
 
-void	pa(s_list *stack)
+void	pb(s_list *t_list)
 {
-	push(stack->stack_b, stack->stack_a[0], stack->b_len++);
-	write(1, "pa\n", 1);
+	push(t_list->stack_b, t_list->stack_a, t_list->b_len++, t_list->a_len--);
+	write(1, "pa\n", 3);
 }
 
 void	rev_rotate(int *a, int len)
