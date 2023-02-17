@@ -80,12 +80,14 @@ int	main(int ac, char *arv[])
 	{
 		if (s_stack.stack_a)
 			free(s_stack.stack_a);
-		system("leaks push_swap");
+		//system("leaks push_swap");
 		write(1, "ERROR\n", 6);
 		return (1);
 	}
+	s_stack.b_len = 0;
 	int i = 0;
-	while(i < ac - 1)
+	printf("%d\n", s_stack.a_len);
+	while(i < s_stack.a_len)
 	{
 		printf("%d ", s_stack.stack_a[i]);
 		i++;
@@ -100,6 +102,7 @@ int	main(int ac, char *arv[])
 	}
 	printf("\n");
 	i = 0;
+	//pause();
 	while(i < s_stack.b_len)
 	{
 		printf("%d ", s_stack.stack_b[i]);
