@@ -9,6 +9,7 @@ typedef struct stack
 {
 	int	*stack_a;
 	int	*stack_b;
+	int	*sorted;
 	int	a_len;
 	int b_len;
 }	s_list;
@@ -24,6 +25,7 @@ void	pb(s_list *t_list);
 void	rra(s_list *t_list);
 void	rrb(s_list *t_list);
 void	rrr(s_list *t_list);
+void	sort(int *sorted, int len);
 void	sort_small(s_list *s_stack);
 long int	ft_atoi(const char *str);
 

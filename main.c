@@ -6,6 +6,7 @@ int	is_sort(s_list *s_stack)
 	int	k;
 
 	i = 0;
+
 	while (i < s_stack->a_len)
 	{
 		k = i + 1;
@@ -20,18 +21,13 @@ int	is_sort(s_list *s_stack)
 	return (1);
 }
 
-int	stack_init(s_list *s_stack, int a_len, char **arv)
-{ 
-	int			i;
-	int			k;
-	int			j;
+int	stack_int(int *stack_a, char **arv)
+{
+	int	i;
+	int	k;
+	int	j;
 	long int	dig;
-	
-	s_stack->a_len = a_len;
-	s_stack->stack_a = malloc(sizeof(int) * a_len);
-	s_stack->stack_b = malloc(sizeof(int) * a_len);
-	if (!(s_stack->stack_a) && !(s_stack->stack_b))
-		return (1);
+
 	i = 1;
 	k = 0;
 	while (arv[i])
@@ -42,11 +38,26 @@ int	stack_init(s_list *s_stack, int a_len, char **arv)
 			return(1);
 		while (j < k)
 		{
-			if (s_stack->stack_a[j++] == dig)
+			if (stack_a[j++] == dig)
 				return (1);
 		}
-		s_stack->stack_a[k++] = (int)dig;
+		stack_a[k++] = (int)dig;
 	}
+	return (0);
+}
+
+int	stack_init(s_list *s_stack, int a_len, char **arv)
+{ 
+	s_stack->a_len = a_len;
+	s_stack->b_len = 0;
+	s_stack->stack_a = malloc(sizeof(int) * a_len);
+	s_stack->stack_b = malloc(sizeof(int) * a_len);
+	s_stack->sorted = malloc(sizeof(int) * a_len);
+	if (!(s_stack->stack_a) && !(s_stack->stack_b) && !(s_stack->sorted))
+		return (1);
+	if (stack_int(s_stack->stack_a, arv) || stack_int(s_stack->sorted, arv))
+		return (1);
+	sort(s_stack->sorted, s_stack->a_len);
 	return (0);
 }
 
@@ -76,17 +87,17 @@ int	main(int ac, char *arv[])
 {
 	s_list s_stack;
 
-	if (ac < 3 || control(arv) || stack_init(&s_stack, ac - 1, arv) || is_sort(&s_stack))
+	if (ac < 2)
+		return (1);
+	if (control(arv) || stack_init(&s_stack, ac - 1, arv) || is_sort(&s_stack))
 	{
 		if (s_stack.stack_a)
 			free(s_stack.stack_a);
-		//system("leaks push_swap");
+		system("leaks push_swap");
 		write(1, "ERROR\n", 6);
 		return (1);
 	}
-	s_stack.b_len = 0;
 	int i = 0;
-	printf("%d\n", s_stack.a_len);
 	while(i < s_stack.a_len)
 	{
 		printf("%d ", s_stack.stack_a[i]);
@@ -102,7 +113,6 @@ int	main(int ac, char *arv[])
 	}
 	printf("\n");
 	i = 0;
-	//pause();
 	while(i < s_stack.b_len)
 	{
 		printf("%d ", s_stack.stack_b[i]);

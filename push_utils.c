@@ -22,3 +22,27 @@ long int	ft_atoi(const char *str)
 	}
 	return (number);
 }
+
+void	sort(int *sorted, int len)
+{
+	int	i;
+	int	k;
+	int	tmp;
+
+	i = 0;
+	while (i < len)
+	{
+		k = i + 1;
+		while (k < len)
+		{
+			if (sorted[i] > sorted[k])
+			{
+				tmp = sorted[i];
+				sorted[i] = sorted[k];
+				sorted[k] = tmp;
+			}
+			k++;
+		}
+		i++;
+	}
+}

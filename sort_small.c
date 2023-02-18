@@ -25,36 +25,27 @@ void	three(s_list *s_stack)
 
 void	five(s_list *s_stack)
 {
-	if (s_stack->stack_b[0] > s_stack->stack_a[2])
-	{
-		pa(s_stack);
-		ra(s_stack);	
-	}
-	else if (s_stack->stack_b[0] < s_stack->stack_a[0])
-		pa(s_stack);
-	else if (s_stack->stack_b[0] > s_stack->stack_a[0] &&
-		s_stack->stack_b[0] < s_stack->stack_a[1])
-	{
-		pa(s_stack);
-		sa(s_stack);
-	}
+	while (s_stack->sorted[2] <= s_stack->stack_a[0])
+		ra(s_stack);
+	if (s_stack->sorted[2] > s_stack->stack_a[0])
+		pb(s_stack);
+	while (s_stack->sorted[2] <= s_stack->stack_a[0])
+		ra(s_stack);
+	if (s_stack->sorted[2] > s_stack->stack_a[0])
+		pb(s_stack);
+	three(s_stack);
+	if (s_stack->stack_b[0] < s_stack->stack_b[1])
+		sb(s_stack);
+	pa(s_stack);
+	pa(s_stack);
 }
 
 void	sort_small(s_list *s_stack)
 {
 	if (s_stack->a_len == 3)
-	{
 		three(s_stack);
-		return ;
-	}
+	else if (s_stack->a_len == 2)
+		sa(s_stack);
 	else if (s_stack->a_len == 5)
-	{
-		pb(s_stack);
-		pb(s_stack);
-		three(s_stack);
-		if (s_stack->stack_b[0] < s_stack->stack_b[1])
-			sb(s_stack);
 		five(s_stack);
-		five(s_stack);
-	}
 }

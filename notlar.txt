@@ -89,3 +89,6 @@ The "push_swap" program
     Checker_OS programı "KO" gösteriyorsa, bu, push_swap'inizin sayıları 
         sıralamayan bir talimat listesi ile geldiği anlamına gelir;
 }
+
+
+
