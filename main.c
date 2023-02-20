@@ -1,123 +1,68 @@
 #include "push_swap.h"
 
-int	is_sort(s_list *s_stack)
+void	exit_fail(t_list **stack_a, t_list **stack_b)
 {
-	int	i;
-	int	k;
+	if (!(stack_a) && !(stack_b))
+	{
+		write(1, "Error\n", 6);
+		exit(1);
+	}
+	write(1, "Error\n", 6);
+	exit(1);
+}
 
+t_list	*new_stack(char *str)
+{
+	t_list	*res;
+
+	if (!str)
+		return (NULL);
+	res = malloc(sizeof(t_list));
+	res->index = 0;
+	res->value = 0;
+	return (res);
+}
+
+t_list	*fill_to_stack(char **arv, int ac)
+{
+	t_list	*stack;
+	t_list	*res;
+	char	**str;
+	int		i;
+	str = arv;
+	if (ac == 2)
+		str = ft_split(arv[0], ' ');
 	i = 0;
-
-	while (i < s_stack->a_len)
+	stack = new_stack(str[i]);
+	res = stack;
+	while (str[i])
 	{
-		k = i + 1;
-		while (k < s_stack->a_len)
-		{
-			if (s_stack->stack_a[i] > s_stack->stack_a[k])
-				return (0);
-			k++;
-		}
-		i++;
+		if (ft_atoi(str[i]) > INT32_MAX || ft_atoi(str[i]) < INT32_MIN)
+			exit_fail(&stack, 0);
+		stack->value = (int)ft_atoi(str[i]);
+		stack->next = new_stack(str[++i]);
+		stack = stack->next;
 	}
-	return (1);
+	if (ac == 2)
+		free(str);
+	return (res);
 }
 
-int	stack_int(int *stack_a, char **arv)
-{
-	int	i;
-	int	k;
-	int	j;
-	long int	dig;
+// int	main(int ac, char *arv[])	
+// {
+// 	t_list	*stack_a;
+// 	t_list	*stack_b;
 
-	i = 1;
-	k = 0;
-	while (arv[i])
-	{
-		j = 0;
-		dig = ft_atoi(arv[i++]);
-		if (dig < -2147483648 || dig > 2147483647)
-			return(1);
-		while (j < k)
-		{
-			if (stack_a[j++] == dig)
-				return (1);
-		}
-		stack_a[k++] = (int)dig;
-	}
-	return (0);
-}
-
-int	stack_init(s_list *s_stack, int a_len, char **arv)
-{ 
-	s_stack->a_len = a_len;
-	s_stack->b_len = 0;
-	s_stack->stack_a = malloc(sizeof(int) * a_len);
-	s_stack->stack_b = malloc(sizeof(int) * a_len);
-	s_stack->sorted = malloc(sizeof(int) * a_len);
-	if (!(s_stack->stack_a) && !(s_stack->stack_b) && !(s_stack->sorted))
-		return (1);
-	if (stack_int(s_stack->stack_a, arv) || stack_int(s_stack->sorted, arv))
-		return (1);
-	sort(s_stack->sorted, s_stack->a_len);
-	return (0);
-}
-
-int	control(char **arv)
-{
-	int	i;
-	int	k;
-	
-	i = 1;
-	while (arv[i])
-	{
-		k = 0;
-		if (arv[i][k] == '-' || arv[i][k] == '+')
-			k++;
-		while(arv[i][k])
-		{
-			if (!(arv[i][k] <= '9' && arv[i][k] >= '0'))
-				return (1);
-			k++;
-		}
-		i++;
-	}
-	return (0);
-}
-
-int	main(int ac, char *arv[])
-{
-	s_list s_stack;
-
-	if (ac < 2)
-		return (1);
-	if (control(arv) || stack_init(&s_stack, ac - 1, arv) || is_sort(&s_stack))
-	{
-		if (s_stack.stack_a)
-			free(s_stack.stack_a);
-		system("leaks push_swap");
-		write(1, "ERROR\n", 6);
-		return (1);
-	}
-	int i = 0;
-	while(i < s_stack.a_len)
-	{
-		printf("%d ", s_stack.stack_a[i]);
-		i++;
-	}
-	sort_small(&s_stack);
-	printf("\n");
-	i = 0;
-	while(i < s_stack.a_len)
-	{
-		printf("%d ", s_stack.stack_a[i]);
-		i++;
-	}
-	printf("\n");
-	i = 0;
-	while(i < s_stack.b_len)
-	{
-		printf("%d ", s_stack.stack_b[i]);
-		i++;
-	}
-	// system("leaks push_swap");
-	return (0);
-}
+// 	if (ac == 1)
+// 		return (0);
+// 	if (ft_gen_control(arv, ac))
+// 		exit_fail(NULL, NULL);
+// 	stack_b = NULL;
+// 	stack_a =  fill_to_stack(arv + 1, ac);
+// 	while (stack_a)
+// 	{
+// 		printf("%d\n", stack_a->value);
+// 		stack_a = stack_a->next;
+// 	}
+// 	return (0);
+// }

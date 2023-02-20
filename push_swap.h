@@ -5,28 +5,16 @@
 #include <stdio.h> // printf için bunu sil
 #include <stdlib.h>
 
-typedef struct stack 
+typedef struct s_list
 {
-	int	*stack_a;
-	int	*stack_b;
-	int	*sorted;
-	int	a_len;
-	int b_len;
-}	s_list;
+	int		value;
+	int		index;
+	struct	s_list	*next;
+}	t_list;
 
-void	sa(s_list *t_list);
-void	sb(s_list *t_list);
-void	ss(s_list *t_list);
-void	ra(s_list *t_list);
-void	rb(s_list *t_list);
-void	rr(s_list *t_list);
-void	pa(s_list *t_list);
-void	pb(s_list *t_list);
-void	rra(s_list *t_list);
-void	rrb(s_list *t_list);
-void	rrr(s_list *t_list);
-void	sort(int *sorted, int len);
-void	sort_small(s_list *s_stack);
-long int	ft_atoi(const char *str);
+char	**ft_split(char const *s, char c);
+int		ft_gen_control(char **arv, int ac);
+long int	ft_atoi(char *str);
+
 
 #endif
