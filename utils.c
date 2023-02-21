@@ -85,3 +85,16 @@ long int	ft_atoi(char *str)
 		return (dig * -1);
 	return (dig);
 }
+
+void	exit_fail(t_list **stack_a, t_list **stack_b)
+{
+	if (!(stack_a) && !(stack_b))
+	{
+		write(1, "Error\n", 6);
+		system("leaks push_swap");
+		exit(1);
+	}
+	write(1, "Error\n", 6);
+	system("leaks push_swap");
+	exit(1);
+}
