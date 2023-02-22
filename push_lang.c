@@ -63,6 +63,60 @@ void	pb(t_list **stack_a, t_list **stack_b)
 
 void	rotate(t_list **stack)
 {
+	(void)stack;
+	return ;
+}
+
+void	ra(t_list **stack)
+{
+	ra(stack);
+	write(1, "ra\n", 3);
+}
+
+void	rb(t_list **stack)
+{
+	rb(stack);
+	write(1, "rb\n", 3);
+}
+
+void	rr(t_list **stack)
+{
+	rr(stack);
+	write(1, "rr\n", 3);
+}
+
+void	reverse_rotate(t_list **stack)
+{
 	t_list	*head;
+	t_list	*end;
 	t_list	*tmp;
+
+	head = *stack;
+	end = head;
+	while (end && end->next)
+		end = end->next;
+	tmp = head;
+	while (tmp->next->next)
+		tmp = tmp->next;
+	end->next = head;
+	tmp->next = NULL;
+	(*stack) = end;
+}
+
+void	rra(t_list **stack)
+{
+	reverse_rotate(stack);
+	write(1, "rra\n", 4);
+}
+
+void	rrb(t_list **stack)
+{
+	reverse_rotate(stack);
+	write(1, "rrb\n", 4);
+}
+
+void	rrr(t_list **stack)
+{
+	reverse_rotate(stack);
+	write(1, "rrr\n", 4);
 }

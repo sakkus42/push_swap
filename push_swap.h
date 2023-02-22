@@ -4,6 +4,8 @@
 #include <unistd.h>
 #include <stdio.h> // printf için bunu sil
 #include <stdlib.h>
+#define INT32_MAX 2147483647
+#define INT32_MIN -2147483648
 
 typedef struct s_list
 {
@@ -28,6 +30,17 @@ void		ss(t_list **stack_a, t_list **stack_b);
 void		sb(t_list **stack);
 void		sa(t_list **stack);
 void		rotate(t_list **stack);
+void		ra(t_list **stack);
+void		rb(t_list **stack);
+void		rr(t_list **stack);
+void		reverse_rotate(t_list **stack);
+void		rra(t_list **stack);
+void		rrb(t_list **stack);
+void		rrr(t_list **stack);
+void		indexing(t_list **stack);
+
+
+
 
 
 #endif
