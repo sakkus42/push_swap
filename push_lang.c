@@ -63,25 +63,34 @@ void	pb(t_list **stack_a, t_list **stack_b)
 
 void	rotate(t_list **stack)
 {
-	(void)stack;
-	return ;
+	t_list	*head;
+	t_list	*tmp;
+
+	tmp = *stack;
+	while (tmp && tmp->next)
+		tmp = tmp->next;
+	head = (*stack);
+	*stack = (*stack)->next;
+	head->next = NULL;
+	tmp->next = head;
 }
 
 void	ra(t_list **stack)
 {
-	ra(stack);
+	rotate(stack);
 	write(1, "ra\n", 3);
 }
 
 void	rb(t_list **stack)
 {
-	rb(stack);
+	rotate(stack);
 	write(1, "rb\n", 3);
 }
 
-void	rr(t_list **stack)
+void	rr(t_list **stack_a, t_list **stack_b)
 {
-	rr(stack);
+	rotate(stack_a);
+	rotate(stack_b);
 	write(1, "rr\n", 3);
 }
 
