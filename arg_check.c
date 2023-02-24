@@ -52,7 +52,9 @@ int	ft_numeric_cntrl(t_list *stack_a)
 {
 	t_list	*stack;
 	t_list	*stack2;
-
+	int		is;
+	
+	is = 1;
 	stack = stack_a;
 	while (stack)
 	{
@@ -60,14 +62,14 @@ int	ft_numeric_cntrl(t_list *stack_a)
 		while (stack2)
 		{
 			if (stack->value > stack2->value)
-				return (0);
+				is = 0;
 			if (stack->value == stack2->value)
 				return (1);
 			stack2 = stack2->next;
 		}
 		stack = stack->next;
 	}
-	return (1);
+	return (is);
 }
 
 

@@ -24,6 +24,8 @@ t_list	*new_struct(char *str)
 	if (!str)
 		return (NULL);
 	res = malloc(sizeof(t_list));
+	if (!res)
+		return NULL;
 	res->index = 0;
 	res->value = 0;
 	res->next = NULL;
@@ -36,12 +38,12 @@ t_list	*stack_creat(t_list *stack_a)
 	t_list	*res;
 	int		i;
 
-	res = NULL;
+	res = new_struct("a");
 	head = res;
 	i = get_size(&stack_a);
 	while (i--)
 	{
-		res = new_struct("a");
+		res->next = new_struct("a");
 		res = res->next;
 	}
 	return (head);
