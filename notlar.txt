@@ -90,4 +90,5 @@ The "push_swap" program
         sıralamayan bir talimat listesi ile geldiği anlamına gelir;
 }
 
-stackleri free yap
+stackleri free yap ok
+sıralıysa hiç bir şey yazdırma

@@ -9,8 +9,12 @@ typedef struct s_list
 {
 	int		value;
 	int		index;
+	int		target_position;
+	int		position;
+	int		cost_a;
+	int		cost_b;
 	struct	s_list	*next;
-}	t_list;
+}					t_list;
 
 t_list		*fill_to_stack(char **arv, int ac);
 t_list		*new_struct(char *str);
@@ -34,7 +38,7 @@ void		rr(t_list **stack_a, t_list **stack_b);
 void		reverse_rotate(t_list **stack);
 void		rra(t_list **stack);
 void		rrb(t_list **stack);
-void		rrr(t_list **stack);
+void		rrr(t_list **stack_a, t_list **stack_b);
 void		indexing(t_list **stack);
 
 

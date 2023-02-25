@@ -28,25 +28,10 @@ t_list	*new_struct(char *str)
 		return NULL;
 	res->index = 0;
 	res->value = 0;
+	res->position = 0;
+	res->target_position = 0;
 	res->next = NULL;
 	return (res);
-}
-
-t_list	*stack_creat(t_list *stack_a)
-{
-	t_list	*head;
-	t_list	*res;
-	int		i;
-
-	res = new_struct("a");
-	head = res;
-	i = get_size(&stack_a);
-	while (i--)
-	{
-		res->next = new_struct("a");
-		res = res->next;
-	}
-	return (head);
 }
 
 t_list	*fill_to_stack(char **arv, int ac)
