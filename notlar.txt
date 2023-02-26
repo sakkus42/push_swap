@@ -92,3 +92,4 @@ The "push_swap" program
 
 stackleri free yap ok
 sıralıysa hiç bir şey yazdırma
+5 li sıralamayı dene.

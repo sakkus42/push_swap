@@ -48,14 +48,14 @@ int	ft_gen_control(char **arv, int ac)
 	return (is);
 }
 
-int	ft_numeric_cntrl(t_list *stack_a)
+int	rep_nbr(t_list **stack_a)
 {
 	t_list	*stack;
 	t_list	*stack2;
 	int		is;
 	
+	stack = *stack_a;
 	is = 1;
-	stack = stack_a;
 	while (stack)
 	{
 		stack2 = stack->next;
@@ -81,4 +81,19 @@ void	free_str(char **str)
 	while (str[i])
 		free(str[i++]);
 	free(str);
+}
+
+int	is_sorted(t_list **stack)
+{
+	t_list	*iter;
+
+	iter = *stack;
+	while (iter && iter->next)
+	{
+		if (iter->index > iter->next->index)
+			iter = iter->next;
+		else
+			return (0);
+	}
+	return (1);
 }
