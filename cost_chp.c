@@ -1,4 +1,4 @@
-#include "psuh_swap.h"
+#include "push_swap.h"
 
 void	set_cost(t_list **stack_a, t_list **stack_b)
 {

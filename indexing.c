@@ -60,3 +60,23 @@ void	indexing(t_list **stack)
 	}
 	free(index);
 }
+
+int		get_low_pos(t_list **stack)
+{
+	t_list	*iter;
+	int		indx;
+	int		pos;
+
+	indx = INT32_MAX;
+	iter = *stack;
+	while (iter)
+	{
+		if (iter->index < indx)
+		{
+			indx = iter->index;
+			pos = iter->position;
+		}
+		iter = iter->next;
+	}
+	return (pos);
+}

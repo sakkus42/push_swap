@@ -49,7 +49,7 @@ t_list	*fill_to_stack(char **arv, int ac)
 	while (str[i])
 	{
 		if (ft_atoi(str[i]) > INT32_MAX || ft_atoi(str[i]) < INT32_MIN)
-			exit_fail(&stack, 0);
+			exit_fail(&stack);
 		stack->value = (int)ft_atoi(str[i]);
 		stack->next = new_struct(str[++i]);
 		stack = stack->next;
@@ -57,4 +57,25 @@ t_list	*fill_to_stack(char **arv, int ac)
 	if (ac == 2)
 		free_str(str);
 	return (res);
+}
+
+void	free_stack(t_list **stack)
+{
+	t_list	*tmp;
+
+	while ((*stack) != NULL)
+	{
+		tmp = *stack;
+		*stack = (*stack)->next;
+		free(tmp);
+	}
+}
+
+void	exit_fail(t_list **stack_a)
+{
+	if (stack_a)
+		free_stack(stack_a);
+	write(1, "Error\n", 6);
+	// system("leaks push_swap");
+	exit(1);
 }

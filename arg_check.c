@@ -64,7 +64,7 @@ int	rep_nbr(t_list **stack_a)
 			if (stack->value > stack2->value)
 				is = 0;
 			if (stack->value == stack2->value)
-				return (1);
+				exit_fail(stack_a);
 			stack2 = stack2->next;
 		}
 		stack = stack->next;

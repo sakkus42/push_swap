@@ -85,37 +85,3 @@ long int	ft_atoi(char *str)
 		return (dig * -1);
 	return (dig);
 }
-
-t_list	*bottom_stack(t_list **stack)
-{
-	t_list	*res;
-
-	res = *stack;
-	while (res && res->next)
-		res = res->next;
-	return (res);
-}
-
-void	free_stack(t_list **stack)
-{
-	t_list	*tmp;
-
-	while ((*stack) != NULL)
-	{
-		tmp = *stack;
-		*stack = (*stack)->next;
-		free(tmp);
-	}
-}
-
-void	exit_fail(t_list **stack_a, t_list **stack_b)
-{
-	if (stack_a)
-	{
-		free_stack(stack_a);
-		free_stack(stack_b);
-	}
-	write(1, "Error\n", 6);
-	system("leaks push_swap");
-	exit(1);
-}

@@ -2,16 +2,15 @@
 
 void	three_sort(t_list **stack_a)
 {
-	if (rep_nbr(stack_a))
-		return ;
+	t_list	*head;
+
+	head = *stack_a;
+	if ((*stack_a)->index > (*stack_a)->next->next->index && (*stack_a)->index > (*stack_a)->next->index)
+		ra(stack_a);
+	else if ((*stack_a)->index  < (*stack_a)->next->next->index && (*stack_a)->index < (*stack_a)->next->index)
+		rra(stack_a);
 	if ((*stack_a)->index > (*stack_a)->next->index)
 		sa(stack_a);
-	if ((*stack_a)->next->index > (*stack_a)->next->next->index)
-	{
-		sa(stack_a);
-		ra(stack_a);
-	}
-	three_sort(stack_a);
 }
 
 void	up_to_3(t_list **stack_a, t_list **stack_b)
@@ -23,7 +22,7 @@ void	up_to_3(t_list **stack_a, t_list **stack_b)
 	size = get_size(stack_a);
 	i = 0;
 	pushed = 0;
-	while (i < size && pushed < size / 2)
+	while (size > 5 && i < size && pushed < size / 2)
 	{
 		if ((*stack_a)->index <= size / 2)
 		{
@@ -43,25 +42,13 @@ void	up_to_3(t_list **stack_a, t_list **stack_b)
 
 void	shift_stack(t_list **stack_a)
 {
-	t_list	*iter;
-	int		indx;
 	int		pos;
 	int		size;
 
 	size = get_size(stack_a);
-	indx = INT32_MAX;
 	set_pos(stack_a);
-	iter = *stack_a;
-	while (iter)
-	{
-		if (iter->index < indx)
-		{
-			indx = iter->index;
-			pos = iter->position;
-		}
-		iter = iter->next;
-	}
-	if (pos < size / 2)
+	pos = get_low_pos(stack_a);
+	if (pos  > size / 2)
 	{
 		while (pos < size)
 		{
@@ -91,9 +78,18 @@ void	sort(t_list **stack_a, t_list **stack_b)
 	}
 	if (!is_sorted(stack_a))
 		shift_stack(stack_a);
-	// display(*stack_a, 'a');
 }
 
+void	display(t_list *a)
+{
+	t_list *iter;
+
+	iter = a;
+	while (iter){
+		printf("%d\n", iter->index);
+		iter = iter->next;
+	}
+}
 
 int	main(int ac, char *arv[])	
 {
@@ -103,11 +99,14 @@ int	main(int ac, char *arv[])
 	if (ac == 1)
 		return (0);
 	if (ft_gen_control(arv, ac))
-		exit_fail(NULL, NULL);
+		exit_fail(NULL);
 	stack_a = fill_to_stack(arv + 1, ac);
 	stack_b = NULL;
 	if (rep_nbr(&stack_a))
-		exit_fail(&stack_a, &stack_b);
+	{
+		free_stack(&stack_a);
+		return (1);
+	}
 	indexing(&stack_a);
 	if (get_size(&stack_a) == 2)
 		sa(&stack_a);
@@ -115,6 +114,8 @@ int	main(int ac, char *arv[])
 		three_sort(&stack_a);
 	else
 		sort(&stack_a, &stack_b);
+	// display(stack_a);
+	free_stack(&stack_a);
 	// system("leaks push_swap");
 	return (0);
 }

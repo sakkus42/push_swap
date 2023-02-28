@@ -4,8 +4,7 @@
 #include <unistd.h>
 #include <stdio.h> // printf için bunu sil
 #include <stdlib.h>
-#define INT32_MAX	2147483647
-#define INT32_MIN	-2147483648
+
 typedef struct s_list
 {
 	int		value;
@@ -25,7 +24,7 @@ int			ft_numeric_cntrl(t_list *stack_a);
 long int	ft_atoi(char *str);
 char		**ft_split(char const *s, char c);
 void		free_str(char **str);
-void		exit_fail(t_list **stack_a, t_list **stack_b);
+void		exit_fail(t_list **stack_a);
 int			get_size(t_list **stack);
 void		pa(t_list **stack_a, t_list **stack_b);
 void		pb(t_list **stack_a, t_list **stack_b);
@@ -48,6 +47,7 @@ int			is_sorted(t_list **stack);
 int			rep_nbr(t_list **stack_a);
 void		do_chp_move(t_list **stack_a, t_list **stack_b);
 void		set_cost(t_list **stack_a, t_list **stack_b);
-
+int			get_low_pos(t_list **stack);
+void		free_stack(t_list **stack);
 
 #endif
