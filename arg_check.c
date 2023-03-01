@@ -80,7 +80,7 @@ int	is_sorted(t_list **stack)
 	iter = *stack; 
 	while (iter && iter->next)
 	{
-		if (iter->index > iter->next->index)
+		if (iter->index < iter->next->index)
 			iter = iter->next;
 		else
 			return (0);

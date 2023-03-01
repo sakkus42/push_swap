@@ -2,9 +2,8 @@
 
 void	three_sort(t_list **stack_a)
 {
-	t_list	*head;
-
-	head = *stack_a;
+	if (is_sorted(stack_a))
+		return ;
 	if ((*stack_a)->index > (*stack_a)->next->next->index && (*stack_a)->index > (*stack_a)->next->index)
 		ra(stack_a);
 	else if ((*stack_a)->index  < (*stack_a)->next->next->index && (*stack_a)->index < (*stack_a)->next->index)
@@ -72,6 +71,7 @@ void	sort(t_list **stack_a, t_list **stack_b)
 {
 	up_to_3(stack_a, stack_b);
 	three_sort(stack_a);
+	// display(*stack_a);
 	while (*stack_b)
 	{
 		get_target_pos(stack_a, stack_b);
@@ -116,7 +116,7 @@ int	main(int ac, char *arv[])
 		three_sort(&stack_a);
 	else
 		sort(&stack_a, &stack_b);
-	display(stack_a);
+	// display(stack_a);
 	free_stack(&stack_a);
 	// system("leaks push_swap");
 	return (0);
