@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   stack_init.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sakkus <sakkus@student.42istanbul.com.tr>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/01 17:04:37 by sakkus            #+#    #+#             */
+/*   Updated: 2023/03/01 17:04:39 by sakkus           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	get_size(t_list **stack)
@@ -25,7 +37,7 @@ t_list	*new_struct(char *str)
 		return (NULL);
 	res = malloc(sizeof(t_list));
 	if (!res)
-		return NULL;
+		return (NULL);
 	res->index = 0;
 	res->value = 0;
 	res->position = 0;
@@ -40,6 +52,7 @@ t_list	*fill_to_stack(char **arv, int ac)
 	t_list	*res;
 	char	**str;
 	int		i;
+
 	str = arv;
 	if (ac == 2)
 		str = ft_split(arv[0], ' ');
@@ -76,6 +89,5 @@ void	exit_fail(t_list **stack_a)
 	if (stack_a)
 		free_stack(stack_a);
 	write(2, "Error\n", 6);
-	// system("leaks push_swap");
 	exit(1);
 }

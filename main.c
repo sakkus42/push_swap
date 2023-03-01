@@ -1,14 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sakkus <sakkus@student.42istanbul.com.tr>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/01 16:24:43 by sakkus            #+#    #+#             */
+/*   Updated: 2023/03/01 16:24:45 by sakkus           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	three_sort(t_list **stack_a)
 {
 	if (is_sorted(stack_a))
 		return ;
-	if ((*stack_a)->index > (*stack_a)->next->next->index && (*stack_a)->index > (*stack_a)->next->index)
+	if ((*stack_a)->index > (*stack_a)->next->next->index
+		&& (*stack_a)->index > (*stack_a)->next->index)
 		ra(stack_a);
-	else if ((*stack_a)->index  < (*stack_a)->next->next->index && (*stack_a)->index < (*stack_a)->next->index)
+	else if ((*stack_a)->index < (*stack_a)->next->next->index
+		&& (*stack_a)->index < (*stack_a)->next->index)
 		rra(stack_a);
-	else if ((*stack_a)->index > (*stack_a)->next->next->index && (*stack_a)->index < (*stack_a)->next->index)
+	else if ((*stack_a)->index > (*stack_a)->next->next->index
+		&& (*stack_a)->index < (*stack_a)->next->index)
 		rra(stack_a);
 	if ((*stack_a)->index > (*stack_a)->next->index)
 		sa(stack_a);
@@ -49,7 +64,7 @@ void	shift_stack(t_list **stack_a)
 	size = get_size(stack_a);
 	set_pos(stack_a);
 	pos = get_low_pos(stack_a);
-	if (pos  > size / 2)
+	if (pos > size / 2)
 	{
 		while (pos < size)
 		{
@@ -71,7 +86,6 @@ void	sort(t_list **stack_a, t_list **stack_b)
 {
 	up_to_3(stack_a, stack_b);
 	three_sort(stack_a);
-	// display(*stack_a);
 	while (*stack_b)
 	{
 		get_target_pos(stack_a, stack_b);
@@ -82,18 +96,7 @@ void	sort(t_list **stack_a, t_list **stack_b)
 		shift_stack(stack_a);
 }
 
-void	display(t_list *a)
-{
-	t_list *iter;
-
-	iter = a;
-	while (iter){
-		printf("%d\n", iter->index);
-		iter = iter->next;
-	}
-}
-
-int	main(int ac, char *arv[])	
+int	main(int ac, char *arv[])
 {
 	t_list	*stack_a;
 	t_list	*stack_b;
@@ -116,8 +119,6 @@ int	main(int ac, char *arv[])
 		three_sort(&stack_a);
 	else
 		sort(&stack_a, &stack_b);
-	// display(stack_a);
 	free_stack(&stack_a);
-	// system("leaks push_swap");
 	return (0);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cost_chp.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sakkus <sakkus@student.42istanbul.com.tr>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/01 16:30:06 by sakkus            #+#    #+#             */
+/*   Updated: 2023/03/01 16:30:08 by sakkus           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	set_cost(t_list **stack_a, t_list **stack_b)
@@ -21,7 +33,7 @@ void	set_cost(t_list **stack_a, t_list **stack_b)
 	}
 }
 
-int		ab_val(int n)
+int	ab_val(int n)
 {
 	if (n < 0)
 		return (n * -1);
@@ -30,7 +42,7 @@ int		ab_val(int n)
 
 void	do_chp_move(t_list **stack_a, t_list **stack_b)
 {
-	t_list *iter;
+	t_list	*iter;
 	int		chp;
 	int		cost_a;
 	int		cost_b;

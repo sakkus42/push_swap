@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   arg_check.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sakkus <sakkus@student.42istanbul.com.tr>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/01 16:28:47 by sakkus            #+#    #+#             */
+/*   Updated: 2023/03/01 16:28:49 by sakkus           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	is_dig(char *str)
@@ -22,7 +34,7 @@ int	is_dig(char *str)
 int	ft_gen_control(char **arv, int ac)
 {
 	char	**str;
-	int	i;
+	int		i;
 
 	str = arv + 1;
 	if (ac == 2)
@@ -43,7 +55,7 @@ int	rep_nbr(t_list **stack_a)
 	t_list	*stack;
 	t_list	*stack2;
 	int		is;
-	
+
 	stack = *stack_a;
 	is = 1;
 	while (stack)
@@ -62,7 +74,6 @@ int	rep_nbr(t_list **stack_a)
 	return (is);
 }
 
-
 void	free_str(char **str)
 {
 	int	i;
@@ -77,7 +88,7 @@ int	is_sorted(t_list **stack)
 {
 	t_list	*iter;
 
-	iter = *stack; 
+	iter = *stack;
 	while (iter && iter->next)
 	{
 		if (iter->index < iter->next->index)

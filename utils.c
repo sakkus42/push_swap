@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sakkus <sakkus@student.42istanbul.com.tr>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/01 17:05:37 by sakkus            #+#    #+#             */
+/*   Updated: 2023/03/01 17:05:38 by sakkus           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	ft_satir(char const *s, char c)
@@ -40,7 +52,6 @@ char	*ft_copy(char const *s, char c)
 	return (str1);
 }
 
-
 char	**ft_split(char const *s, char c)
 {
 	char	**str;
@@ -69,7 +80,7 @@ char	**ft_split(char const *s, char c)
 
 long int	ft_atoi(char *str)
 {
-	int	i;
+	int			i;
 	long int	dig;
 
 	i = 0;

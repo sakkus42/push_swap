@@ -1,27 +1,36 @@
-#ifndef PUSH_SWAP_H
-#define PUSH_SWAP_H
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sakkus <sakkus@student.42istanbul.com.tr>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/01 17:06:22 by sakkus            #+#    #+#             */
+/*   Updated: 2023/03/01 17:23:29 by sakkus           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h> // printf için bunu sil
-#include <stdlib.h>
-#define INT32_MAX 2147483647
-#define INT32_MIN -2147483648
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
+
+# include <unistd.h>
+# include <stdlib.h>
+
 typedef struct s_list
 {
-	int		value;
-	int		index;
-	int		target_position;
-	int		position;
-	int		cost_a;
-	int		cost_b;
-	struct	s_list	*next;
-}					t_list;
+	int				value;
+	int				index;
+	int				target_position;
+	int				position;
+	int				cost_a;
+	int				cost_b;
+	struct s_list	*next;
+}	t_list;
 
 t_list		*fill_to_stack(char **arv, int ac);
 t_list		*new_struct(char *str);
 t_list		*stack_creat(t_list *stack_a);
 int			ft_gen_control(char **arv, int ac);
-int			ft_numeric_cntrl(t_list *stack_a);
 long int	ft_atoi(char *str);
 char		**ft_split(char const *s, char c);
 void		free_str(char **str);
@@ -32,11 +41,9 @@ void		pb(t_list **stack_a, t_list **stack_b);
 void		ss(t_list **stack_a, t_list **stack_b);
 void		sb(t_list **stack);
 void		sa(t_list **stack);
-void		rotate(t_list **stack);
 void		ra(t_list **stack);
 void		rb(t_list **stack);
 void		rr(t_list **stack_a, t_list **stack_b);
-void		reverse_rotate(t_list **stack);
 void		rra(t_list **stack);
 void		rrb(t_list **stack);
 void		rrr(t_list **stack_a, t_list **stack_b);
@@ -50,7 +57,5 @@ void		do_chp_move(t_list **stack_a, t_list **stack_b);
 void		set_cost(t_list **stack_a, t_list **stack_b);
 int			get_low_pos(t_list **stack);
 void		free_stack(t_list **stack);
-void		display(t_list *a);
-
 
 #endif

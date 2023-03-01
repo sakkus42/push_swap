@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   indexing.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sakkus <sakkus@student.42istanbul.com.tr>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/01 16:32:41 by sakkus            #+#    #+#             */
+/*   Updated: 2023/03/01 16:32:43 by sakkus           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	sort_array(int	*index, int len)
@@ -24,17 +36,23 @@ void	sort_array(int	*index, int len)
 	}
 }
 
-void	indexing(t_list **stack)
+int	*creat_array(t_list **stack)
 {
-	t_list	*iter;
-	int		*index;
-	int		size;
-	int		i;
+	int	size;
+	int	*index;
 
 	size = get_size(stack);
 	index = malloc(sizeof(int) * size);
 	if (!index)
 		exit(1);
+	return (index);
+}
+
+void	fill_to_array(t_list **stack, int	*index)
+{
+	t_list	*iter;
+	int		i;
+
 	i = 0;
 	iter = *stack;
 	while (iter)
@@ -42,10 +60,23 @@ void	indexing(t_list **stack)
 		index[i++] = iter->value;
 		iter = iter->next;
 	}
+}
+
+void	indexing(t_list **stack)
+{
+	t_list	*iter;
+	int		*index;
+	int		i;
+	int		size;
+
+	index = creat_array(stack);
+	iter = *stack;
+	size = get_size(stack);
+	fill_to_array(stack, index);
 	sort_array(index, size);
 	iter = *stack;
 	i = 0;
-	while(iter && i < size)
+	while (iter && i < size)
 	{
 		if (iter->value == index[i])
 		{
@@ -54,14 +85,12 @@ void	indexing(t_list **stack)
 			i++;
 		}
 		else
-		{
 			iter = iter->next;
-		}
 	}
 	free(index);
 }
 
-int		get_low_pos(t_list **stack)
+int	get_low_pos(t_list **stack)
 {
 	t_list	*iter;
 	int		indx;

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sakkus <sakkus@student.42istanbul.com.tr>  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/03/01 16:49:04 by sakkus            #+#    #+#             */
+/*   Updated: 2023/03/01 16:49:06 by sakkus           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	push(t_list **stack_a, t_list **stack_b)
@@ -13,7 +25,7 @@ void	push(t_list **stack_a, t_list **stack_b)
 	tmp = top_a->next;
 	top_a->next = top_b;
 	(*stack_a) = tmp;
-	(*stack_b) = top_a;	
+	(*stack_b) = top_a;
 }
 
 void	pa(t_list **stack_a, t_list **stack_b)
