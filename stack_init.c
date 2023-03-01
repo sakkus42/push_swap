@@ -75,7 +75,7 @@ void	exit_fail(t_list **stack_a)
 {
 	if (stack_a)
 		free_stack(stack_a);
-	write(1, "Error\n", 6);
+	write(2, "Error\n", 6);
 	// system("leaks push_swap");
 	exit(1);
 }

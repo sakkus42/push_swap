@@ -9,6 +9,8 @@ void	three_sort(t_list **stack_a)
 		ra(stack_a);
 	else if ((*stack_a)->index  < (*stack_a)->next->next->index && (*stack_a)->index < (*stack_a)->next->index)
 		rra(stack_a);
+	else if ((*stack_a)->index > (*stack_a)->next->next->index && (*stack_a)->index < (*stack_a)->next->index)
+		rra(stack_a);
 	if ((*stack_a)->index > (*stack_a)->next->index)
 		sa(stack_a);
 }
@@ -105,7 +107,7 @@ int	main(int ac, char *arv[])
 	if (rep_nbr(&stack_a))
 	{
 		free_stack(&stack_a);
-		return (1);
+		return (0);
 	}
 	indexing(&stack_a);
 	if (get_size(&stack_a) == 2)
@@ -114,7 +116,7 @@ int	main(int ac, char *arv[])
 		three_sort(&stack_a);
 	else
 		sort(&stack_a, &stack_b);
-	// display(stack_a);
+	display(stack_a);
 	free_stack(&stack_a);
 	// system("leaks push_swap");
 	return (0);

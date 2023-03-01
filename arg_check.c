@@ -1,24 +1,20 @@
 #include "push_swap.h"
 
-int	ft_control(char **arv)
+int	is_dig(char *str)
 {
 	int	i;
-	int	k;
 
 	i = 0;
-	while (arv[i])
-	{
-		k = 0;
-		if (arv[i][k] == '-' || arv[i][k] == '+')
-			k++;
-		while (arv[i][k])
-		{
-			if (arv[i][k] <= '9' && arv[i][k] >= '0')
-				k++;
-			else
-				return (1);
-		}
+	if (str[i] == '+' || str[i] == '-')
 		i++;
+	if (!str[i])
+		return (1);
+	while (str[i])
+	{
+		if (str[i] >= '0' && str[i] <= '9')
+			i++;
+		else
+			return (1);
 	}
 	return (0);
 }
@@ -26,26 +22,20 @@ int	ft_control(char **arv)
 int	ft_gen_control(char **arv, int ac)
 {
 	char	**str;
-	int	is;
 	int	i;
 
-	is = 0;
-	str = 0;
+	str = arv + 1;
 	if (ac == 2)
-	{
 		str = ft_split(arv[1], ' ');
-		if (ft_control(str))
-			is = 1;
-		i = 0;
-		while (str[i])
-			i++;
-		free_str(str);
-		if (i == 1)
-			exit (1);
+	i = 0;
+	while (str[i])
+	{
+		if (is_dig(str[i++]))
+			return (1);
 	}
-	else if (ft_control(arv + 1))
-		is = 1;
-	return (is);
+	if (ac == 2)
+		free_str(str);
+	return (0);
 }
 
 int	rep_nbr(t_list **stack_a)
@@ -87,7 +77,7 @@ int	is_sorted(t_list **stack)
 {
 	t_list	*iter;
 
-	iter = *stack;
+	iter = *stack; 
 	while (iter && iter->next)
 	{
 		if (iter->index > iter->next->index)

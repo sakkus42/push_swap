@@ -67,6 +67,7 @@ int		get_low_pos(t_list **stack)
 	int		indx;
 	int		pos;
 
+	set_pos(stack);
 	indx = INT32_MAX;
 	iter = *stack;
 	while (iter)
